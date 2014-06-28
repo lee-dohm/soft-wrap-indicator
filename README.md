@@ -2,6 +2,14 @@
 
 Adds an indicator to the status bar that lights up if the active editor has soft wrap enabled.
 
+Indicator Lit:
+
+![Indicator Lit](https://raw.githubusercontent.com/lee-dohm/soft-wrap-indicator/master/indicator-lit.png)
+
+Indicator Dark:
+
+![Indicator Dark](https://raw.githubusercontent.com/lee-dohm/soft-wrap-indicator/master/indicator-dark.png)
+
 ## Styles
 
 The soft wrap indicator can be styled using the following classes:

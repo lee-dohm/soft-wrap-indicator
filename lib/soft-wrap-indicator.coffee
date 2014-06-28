@@ -5,17 +5,12 @@ class SoftWrapIndicator
 
   activate: ->
     atom.packages.once 'activated', =>
-      @view = new SoftWrapIndicatorView()
-      atom.workspaceView.statusBar?.appendLeft(@view)
-
-    atom.workspaceView.eachEditorView (view) =>
-      view.on 'focus', =>
-        if view.getEditor().getSoftWrap()
-          @view.addClass('lit')
-        else
-          @view.removeClass('lit')
+      statusBar = atom.workspaceView.statusBar
+      if statusBar?
+        @view = new SoftWrapIndicatorView(statusBar)
+        statusBar.appendLeft(@view)
 
   deactivate: ->
-    @view.destroy()
+    @view?.destroy()
 
 module.exports = new SoftWrapIndicator()
