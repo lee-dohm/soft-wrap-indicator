@@ -1,7 +1,7 @@
 {
   "name": "soft-wrap-indicator",
   "main": "./lib/soft-wrap-indicator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Adds an indicator to the status bar that lights up if the active editor has soft wrap enabled",
   "repository": "https://github.com/lee-dohm/soft-wrap-indicator",
   "license": "MIT",
