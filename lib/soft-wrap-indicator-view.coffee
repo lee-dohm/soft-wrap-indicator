@@ -9,6 +9,9 @@ class SoftWrapIndicatorView extends View
   initialize: (@statusBar) ->
     @subscribe @statusBar, 'active-buffer-changed', @update
 
+    atom.workspace.eachEditor (editor) =>
+      @subscribe editor.displayBuffer, 'soft-wrap-changed', @update
+
   getActiveEditor: ->
     atom.workspace.getActiveEditor()
 
