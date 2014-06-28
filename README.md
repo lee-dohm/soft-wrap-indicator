@@ -23,3 +23,7 @@ It uses the following values from `ui-variables` as defaults in order to blend i
 * `@text-color-highlight` - Text color when lit
 
 By default it also includes a blurred text shadow to give it a kind of glow when lit.
+
+## Copyright
+
+Copyright &copy; [Lee Dohm](http://www.lee-dohm.com). See [LICENSE](https://github.com/lee-dohm/soft-wrap-indicator/blob/master/LICENSE.md) for details.
