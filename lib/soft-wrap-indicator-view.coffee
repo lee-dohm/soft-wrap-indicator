@@ -16,6 +16,8 @@ class SoftWrapIndicatorView extends View
     atom.workspace.eachEditor (editor) =>
       @subscribe editor.displayBuffer, 'soft-wrap-changed', @update
 
+    @subscribe this, 'click', => @getActiveEditor()?.toggleSoftWrap()
+
   # Gets the currently active `Editor`.
   #
   # Returns the {Editor} that is currently active or `null` if there is not one active.
