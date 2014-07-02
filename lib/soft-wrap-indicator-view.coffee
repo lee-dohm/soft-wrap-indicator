@@ -5,7 +5,7 @@ module.exports =
 class SoftWrapIndicatorView extends View
   @content: ->
     @div class: 'inline-block', =>
-      @span 'Wrap', class: 'soft-wrap-indicator', outlet: 'light'
+      @a 'Wrap', class: 'soft-wrap-indicator', outlet: 'light'
 
   # Initializes the view by subscribing to various events.
   #
@@ -15,6 +15,8 @@ class SoftWrapIndicatorView extends View
 
     atom.workspace.eachEditor (editor) =>
       @subscribe editor.displayBuffer, 'soft-wrap-changed', @update
+
+    @subscribe this, 'click', => @getActiveEditor()?.toggleSoftWrap()
 
   # Gets the currently active `Editor`.
   #

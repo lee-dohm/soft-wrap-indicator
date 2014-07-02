@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## **v0.2.0** &mdash; *Released: 2 July 2014*
+
+* [#3](https://github.com/lee-dohm/soft-wrap-indicator/issues/3) &mdash; Indicator now toggles soft wrap of active editor when clicked
+
 ## **v0.1.3** &mdash; *Released: 28 June 2014*
 
 * [#1](https://github.com/lee-dohm/soft-wrap-indicator/issues/1) &mdash; Indicator now updates when soft wrap is toggled
