@@ -18,6 +18,10 @@ class SoftWrapIndicatorView extends View
 
     @subscribe this, 'click', => @getActiveEditor()?.toggleSoftWrap()
 
+  # Internal: Executes after the view is added to the status bar.
+  afterAttach: ->
+    @update()
+
   # Gets the currently active `Editor`.
   #
   # Returns the {Editor} that is currently active or `null` if there is not one active.
