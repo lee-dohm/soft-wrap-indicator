@@ -1,13 +1,13 @@
 {View} = require 'atom'
 
-# Status bar view for the soft wrap indicator.
+# Public: Status bar view for the soft wrap indicator.
 module.exports =
 class SoftWrapIndicatorView extends View
   @content: ->
     @div class: 'inline-block', =>
       @a 'Wrap', class: 'soft-wrap-indicator', outlet: 'light'
 
-  # Initializes the view by subscribing to various events.
+  # Public: Initializes the view by subscribing to various events.
   #
   # statusBar - {StatusBar} of the application
   initialize: (@statusBar) ->
@@ -18,17 +18,17 @@ class SoftWrapIndicatorView extends View
 
     @subscribe this, 'click', => @getActiveEditor()?.toggleSoftWrap()
 
-  # Internal: Executes after the view is added to the status bar.
+  # Internal: Executed by the framework after the view is added to the status bar.
   afterAttach: ->
     @update()
 
-  # Gets the currently active `Editor`.
+  # Internal: Gets the currently active `Editor`.
   #
   # Returns the {Editor} that is currently active or `null` if there is not one active.
   getActiveEditor: ->
     atom.workspace.getActiveEditor()
 
-  # Updates the indicator based on the current state of the application.
+  # Internal: Updates the indicator based on the current state of the application.
   update: =>
     if @getActiveEditor()?.getSoftWrap()
       @light.addClass('lit').show()
@@ -37,6 +37,6 @@ class SoftWrapIndicatorView extends View
     else
       @light.hide()
 
-  # Tear down any state and detach.
+  # Internal: Tear down any state and detach.
   destroy: ->
     @remove()
