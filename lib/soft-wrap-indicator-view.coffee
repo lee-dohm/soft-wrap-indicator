@@ -30,7 +30,7 @@ class SoftWrapIndicatorView extends View
 
   # Internal: Updates the indicator based on the current state of the application.
   update: =>
-    if @getActiveEditor()?.getSoftWrap()
+    if @getActiveEditor()?.isSoftWrapped()
       @light.addClass('lit').show()
     else if @getActiveEditor()?
       @light.removeClass('lit').show()

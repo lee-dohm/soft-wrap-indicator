@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## **master** &mdash; *Unreleased*
+
+* Update for compatibility with new soft wrap API
+
 ## **v0.2.1** &mdash; *Released: 13 July 2014*
 
 * Indicator updates now when first attached to the status bar
