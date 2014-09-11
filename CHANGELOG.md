@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## **master** &mdash; *Unreleased*
+## **v0.2.2** &mdash; *Released: 11 September 2014*
 
 * Update for compatibility with new soft wrap API
 
