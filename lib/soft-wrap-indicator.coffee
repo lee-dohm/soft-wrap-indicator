@@ -8,8 +8,8 @@ class SoftWrapIndicator
   activate: ->
     atom.packages.once 'activated', =>
       statusBar = atom.workspaceView.statusBar
-      if statusBar?
-        @view = new SoftWrapIndicatorView(statusBar)
+      if statusBar
+        @view = new SoftWrapIndicatorView
         statusBar.appendLeft(@view)
 
   # Deactivates the package.

@@ -8,31 +8,28 @@ class SoftWrapIndicatorView extends View
       @a 'Wrap', class: 'soft-wrap-indicator', outlet: 'light'
 
   # Public: Initializes the view by subscribing to various events.
-  #
-  # statusBar - {StatusBar} of the application
-  initialize: (@statusBar) ->
-    @subscribe @statusBar, 'active-buffer-changed', @update
+  initialize: ->
+    atom.workspace.onDidChangeActivePaneItem =>
+      @update()
 
-    atom.workspace.eachEditor (editor) =>
-      @subscribe editor.displayBuffer, 'soft-wrap-changed', @update
+    atom.workspace.observeTextEditors (editor) =>
+      editor.onDidChangeSoftWrapped =>
+        @update()
 
-    @subscribe this, 'click', => @getActiveEditor()?.toggleSoftWrap()
+    @subscribe this, 'click', ->
+      atom.workspace.getActiveEditor()?.toggleSoftWrap()
 
   # Internal: Executed by the framework after the view is added to the status bar.
   afterAttach: ->
     @update()
 
-  # Internal: Gets the currently active `Editor`.
-  #
-  # Returns the {Editor} that is currently active or `null` if there is not one active.
-  getActiveEditor: ->
-    atom.workspace.getActiveEditor()
-
   # Internal: Updates the indicator based on the current state of the application.
-  update: =>
-    if @getActiveEditor()?.isSoftWrapped()
+  update: ->
+    editor = atom.workspace.getActiveEditor()
+
+    if editor?.isSoftWrapped()
       @light.addClass('lit').show()
-    else if @getActiveEditor()?
+    else if editor
       @light.removeClass('lit').show()
     else
       @light.hide()
