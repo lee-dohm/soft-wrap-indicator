@@ -1,39 +1,84 @@
-{View} = require 'atom'
+# Public: Status bar indicator for the soft wrap status of the current editor.
+class SoftWrapIndicatorView extends HTMLElement
+  # Public: Initializes the indicator.
+  #
+  # * `statusBar` The {StatusBarView} to attach the indicator to.
+  initialize: (@statusBar) ->
+    @classList.add('inline-block')
+    @light = @createLink()
+    @handleEvents()
 
-# Public: Status bar view for the soft wrap indicator.
-module.exports =
-class SoftWrapIndicatorView extends View
-  @content: ->
-    @div class: 'inline-block', =>
-      @a 'Wrap', class: 'soft-wrap-indicator', outlet: 'light'
+  # Public: Attaches the indicator to the {StatusBarView}.
+  attach: ->
+    @statusBar?.appendLeft(this)
 
-  # Public: Initializes the view by subscribing to various events.
-  initialize: ->
-    atom.workspace.onDidChangeActivePaneItem =>
+  # Public: Destroys and removes the indicator.
+  destroy: ->
+    @grammarSubscription?.dispose()
+    @clickSubscription?.dispose()
+    @activeItemSubscription?.dispose()
+    @remove()
+
+  # Private: Creates the clickable link for toggling soft wrap.
+  #
+  # Returns the link.
+  createLink: ->
+    link = document.createElement('a')
+    link.classList.add('soft-wrap-indicator', 'inline-block')
+    link.href = '#'
+    link.textContent = 'Wrap'
+    @appendChild(link)
+
+  # Private: Gets the active text editor.
+  #
+  # Returns the active {TextEditor}, if any.
+  getActiveTextEditor: ->
+    atom.workspace.getActiveTextEditor()
+
+  # Private: Sets up the event handlers.
+  handleEvents: ->
+    @activeItemSubscritpion = atom.workspace.onDidChangeActivePaneItem =>
+      @subscribeToActiveTextEditor()
+
+    clickHandler = ->
+      atom.workspace.getActiveTextEditor()?.toggleSoftWrap()
+      false
+
+    @addEventListener('click', clickHandler)
+    @clickSubscription = dispose: => @removeEventListener('click', clickHandler)
+
+    @subscribeToActiveTextEditor()
+
+  # Private: Subscribes to the appropriate events on the active text editor when it changes.
+  subscribeToActiveTextEditor: ->
+    @grammarSubscription?.dispose()
+
+    @grammarSubscription = @getActiveTextEditor()?.onDidChangeSoftWrapped =>
       @update()
 
-    atom.workspace.observeTextEditors (editor) =>
-      editor.onDidChangeSoftWrapped =>
-        @update()
-
-    @subscribe this, 'click', ->
-      atom.workspace.getActiveEditor()?.toggleSoftWrap()
-
-  # Internal: Executed by the framework after the view is added to the status bar.
-  afterAttach: ->
     @update()
 
-  # Internal: Updates the indicator based on the current state of the application.
+  # Private: Shows the indicator.
+  show: ->
+    @style.display = ''
+
+  # Private: Hides the indicator.
+  hide: ->
+    @style.display = 'none'
+
+  # Private: Updates the content of the indicator.
   update: ->
-    editor = atom.workspace.getActiveEditor()
+    editor = @getActiveTextEditor()
 
     if editor?.isSoftWrapped()
-      @light.addClass('lit').show()
+      @light.classList.add('lit')
+      @show()
     else if editor
-      @light.removeClass('lit').show()
+      @light.classList.remove('lit')
+      @show()
     else
-      @light.hide()
+      @hide()
 
-  # Internal: Tear down any state and detach.
-  destroy: ->
-    @remove()
+module.exports = document.registerElement('soft-wrap-indicator',
+                                          prototype: SoftWrapIndicatorView.prototype,
+                                          extends: 'div')

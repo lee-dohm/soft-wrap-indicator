@@ -1,5 +1,3 @@
-SoftWrapIndicatorView = require './soft-wrap-indicator-view'
-
 # Handles the activation and deactivation of the package.
 class SoftWrapIndicator
   view: null
@@ -7,10 +5,12 @@ class SoftWrapIndicator
   # Activates the package.
   activate: ->
     atom.packages.once 'activated', =>
-      statusBar = atom.workspaceView.statusBar
-      if statusBar
+      {statusBar} = atom.workspaceView
+      if statusBar?
+        SoftWrapIndicatorView = require './soft-wrap-indicator-view'
         @view = new SoftWrapIndicatorView
-        statusBar.appendLeft(@view)
+        @view.initialize(statusBar)
+        @view.attach()
 
   # Deactivates the package.
   deactivate: ->
