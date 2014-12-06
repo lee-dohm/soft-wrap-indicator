@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## **v0.3.0** &mdash; *Released: 5 December 2014*
+
+* Updated to use custom HTML elements for the view
+
 ## **v0.2.2** &mdash; *Released: 11 September 2014*
 
 * Update for compatibility with new soft wrap API
