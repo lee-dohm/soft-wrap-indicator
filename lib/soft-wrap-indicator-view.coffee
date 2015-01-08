@@ -10,7 +10,7 @@ class SoftWrapIndicatorView extends HTMLElement
 
   # Public: Attaches the indicator to the {StatusBarView}.
   attach: ->
-    @statusBar?.appendLeft(this)
+    @statusBar?.addLeftTile(item: this, priority: 150)
 
   # Public: Destroys and removes the indicator.
   destroy: ->
