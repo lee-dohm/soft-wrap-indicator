@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## **v0.4.0** &mdash; *Released: 8 January 2015*
+
+* Resolved all deprecations in preparation for Atom v1.0
+* [PR #8](https://github.com/lee-dohm/soft-wrap-indicator/pulls/8) by [@lexicalunit](https://github.com/lexicalunit) &mdash; Converted to using the new Status Bar API
+
 ## **v0.3.0** &mdash; *Released: 5 December 2014*
 
 * Updated to use custom HTML elements for the view

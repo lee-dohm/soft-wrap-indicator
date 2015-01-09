@@ -26,4 +26,4 @@ By default it also includes a blurred text shadow to give it a kind of glow when
 
 ## Copyright
 
-Copyright &copy; [Lee Dohm](http://www.lee-dohm.com). See [LICENSE](https://github.com/lee-dohm/soft-wrap-indicator/blob/master/LICENSE.md) for details.
+Copyright &copy; 2014-2015 [Lee Dohm](http://www.lee-dohm.com). See [LICENSE](https://github.com/lee-dohm/soft-wrap-indicator/blob/master/LICENSE.md) for details.
