@@ -10,7 +10,7 @@ class SoftWrapIndicatorView extends HTMLElement
 
   # Public: Attaches the indicator to the {StatusBarView}.
   attach: ->
-    @statusBar?.addLeftTile(item: this, priority: 150)
+    @tile = @statusBar?.addLeftTile(item: this, priority: 150)
 
   # Public: Destroys and removes the indicator.
   destroy: ->
@@ -18,6 +18,8 @@ class SoftWrapIndicatorView extends HTMLElement
     @clickSubscription?.dispose()
     @activeItemSubscription?.dispose()
     @remove()
+    @tile?.destroy()
+    @tile = null
 
   # Private: Creates the clickable link for toggling soft wrap.
   #

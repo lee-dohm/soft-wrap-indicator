@@ -4,7 +4,7 @@ class SoftWrapIndicator
 
   # Activates the package.
   activate: ->
-    atom.packages.once 'activated', =>
+    atom.packages.onDidActivateAll =>
       statusBar = document.querySelector('status-bar')
       if statusBar?
         SoftWrapIndicatorView = require './soft-wrap-indicator-view'
@@ -15,5 +15,6 @@ class SoftWrapIndicator
   # Deactivates the package.
   deactivate: ->
     @view?.destroy()
+    @view = null
 
 module.exports = new SoftWrapIndicator()
