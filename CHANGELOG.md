@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## **v0.5.0** &mdash; *Released: 21 February 2015*
+
+* Converted to using the status bar service
+
 ## **v0.4.0** &mdash; *Released: 8 January 2015*
 
 * Resolved all deprecations in preparation for Atom v1.0

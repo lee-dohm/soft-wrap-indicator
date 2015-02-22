@@ -6,7 +6,13 @@
   "repository": "https://github.com/lee-dohm/soft-wrap-indicator",
   "license": "MIT",
   "engines": {
-    "atom": ">=0.168.0"
+    "atom": ">= 0.182.0 < 2.0.0"
   },
-  "dependencies": {}
+  "consumedServices": {
+    "status-bar": {
+      "versions": {
+        "^0.58.0": "consumeStatusBar"
+      }
+    }
+  }
 }
