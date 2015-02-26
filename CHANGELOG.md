@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## **v0.5.1** &mdash; *Released: 26 February 2015*
+
+* Removed debug logging
+
 ## **v0.5.0** &mdash; *Released: 21 February 2015*
 
 * Converted to using the status bar service
