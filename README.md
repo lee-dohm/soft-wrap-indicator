@@ -1,4 +1,4 @@
-# Soft Wrap Indicator
+# Soft Wrap Indicator [![Build Status](https://travis-ci.org/lee-dohm/soft-wrap-indicator.svg?branch=master)](https://travis-ci.org/lee-dohm/soft-wrap-indicator) [![Dependency Status](https://david-dm.org/lee-dohm/soft-wrap-indicator.svg)](https://david-dm.org/lee-dohm/soft-wrap-indicator)
 
 Adds an indicator to the status bar that lights up if the active editor has soft wrap enabled.
 
