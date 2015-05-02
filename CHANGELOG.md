@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## **v0.6.0** &mdash; *Released: 2 May 2015*
+
+* Cleanup in preparation for Deprecation Day
+* Add Travis CI support
+* Add build and dependencies badges to `README`
+
 ## **v0.5.1** &mdash; *Released: 26 February 2015*
 
 * Removed debug logging
