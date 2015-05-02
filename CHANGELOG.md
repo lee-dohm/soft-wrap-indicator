@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## **v0.6.1** &mdash; *Released: 2 May 2015*
+
+* Update Atom version requirement
+
 ## **v0.6.0** &mdash; *Released: 2 May 2015*
 
 * Cleanup in preparation for Deprecation Day
