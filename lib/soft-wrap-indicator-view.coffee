@@ -1,81 +1,47 @@
-{CompositeDisposable} = require 'atom'
+{CompositeDisposable, Disposable} = require 'atom'
 
-# Public: Status bar indicator for the soft wrap status of the current editor.
-class SoftWrapIndicatorView extends HTMLDivElement
-  # Public: Initializes the indicator.
-  #
-  # * `statusBar` Status bar service.
-  initialize: (@statusBar) ->
+class SoftWrapIndicatorView extends HTMLElement
+  initialize: ->
     @classList.add('inline-block')
-    @wrapLink = document.createElement('a')
-    @wrapLink.classList.add('soft-wrap-indicator', 'inline-block')
-    @wrapLink.href = '#'
-    @wrapLink.textContent = 'Wrap'
-    @appendChild(@wrapLink)
-    @handleEvents()
+    @addLink()
+    @createEventHandlers()
 
-  # Public: Attaches the indicator to the {StatusBarView}.
-  attach: ->
-    @tile = @statusBar.addLeftTile(item: this, priority: 150)
+  addLink: ->
+    @link = document.createElement('a')
+    @link.classList.add('soft-wrap-indicator', 'inline-block')
+    @link.href = '#'
+    @link.textContent = 'Wrap'
 
-  # Public: Destroys and removes the indicator.
-  destroy: ->
-    @editorSubscriptions?.dispose()
-    @subscriptions?.dispose()
-    @tile?.destroy()
-    @tile = null
+    @appendChild(@link)
 
-  # Private: Gets the active text editor.
-  #
-  # Returns the active {TextEditor}, if any.
-  getActiveTextEditor: ->
-    atom.workspace.getActiveTextEditor()
+  createEventHandlers: ->
+    @disposables = new CompositeDisposable
 
-  # Private: Sets up the event handlers.
-  handleEvents: ->
-    @subscriptions = new CompositeDisposable
-    @subscriptions.add atom.workspace.onDidChangeActivePaneItem =>
-      @subscribeToActiveTextEditor()
+    @createActivePaneHandler()
+    @createClickHandler()
 
-    clickHandler = =>
-      @getActiveTextEditor()?.toggleSoftWrapped()
+  createActivePaneHandler: ->
+    @disposables.add atom.workspace.onDidChangeActivePaneItem =>
+      @update()
+
+  createClickHandler: ->
+    clickHandler = ->
+      atom.workspace.getActiveTextEditor()?.toggleSoftWrapped()
       false
 
     @addEventListener('click', clickHandler)
-    @subscriptions.add dispose: => @removeEventListener('click', clickHandler)
+    disposable = new Disposable =>
+      @removeEventListener('click', clickHandler)
 
-    @subscribeToActiveTextEditor()
+    @disposables.add disposable
 
-  # Private: Subscribes to the appropriate events on the active text editor when it changes.
-  subscribeToActiveTextEditor: ->
-    @editorSubscriptions?.dispose()
+  destroy: ->
+    @disposables?.dispose()
+    @disposables = null
 
-    @editorSubscriptions = new CompositeDisposable
-    @editorSubscriptions.add @getActiveTextEditor()?.onDidChangeSoftWrapped => @update()
-    @editorSubscriptions.add @getActiveTextEditor()?.onDidChangeGrammar => @update()
-
-    @update()
-
-  # Private: Shows the indicator.
-  show: ->
-    @style.display = ''
-
-  # Private: Hides the indicator.
-  hide: ->
-    @style.display = 'none'
-
-  # Private: Updates the content of the indicator.
   update: ->
-    editor = @getActiveTextEditor()
 
-    if editor?.isSoftWrapped()
-      @wrapLink.classList.add('lit')
-      @show()
-    else if editor
-      @wrapLink.classList.remove('lit')
-      @show()
-    else
-      @hide()
 
-module.exports = document.registerElement('soft-wrap-indicator',
-                                          prototype: SoftWrapIndicatorView.prototype)
+module.exports = document.registerElement('status-bar-soft-wrap',
+                                          prototype: SoftWrapIndicatorView.prototype,
+                                          extends: 'div')

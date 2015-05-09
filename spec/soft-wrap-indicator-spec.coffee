@@ -18,7 +18,7 @@ describe 'SoftWrapIndicator', ->
 
   describe 'when no editor is open', ->
     it 'has the text "Wrap"', ->
-      expect(indicator.wrapLink.textContent).toBe 'Wrap'
+      expect(indicator.link.textContent).toBe 'Wrap'
 
     it 'hides the indicator when there is no open editor', ->
       expect(indicator).toBeHidden()
