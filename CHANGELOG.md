@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## **v0.7.0** &mdash; *Released: 8 May 2015*
+
+* Almost complete rewrite because of an editor lifecycle :bug:
+
 ## **v0.6.1** &mdash; *Released: 2 May 2015*
 
 * Update Atom version requirement
