@@ -37,25 +37,25 @@ describe 'SoftWrapIndicator', ->
       expect(indicator).not.toBeHidden()
 
     it 'is not lit when the grammar is not soft wrapped', ->
-      expect(indicator.wrapLink.classList.contains('lit')).toBeFalsy()
+      expect(indicator.link.classList.contains('lit')).toBeFalsy()
 
     it 'is lit when the grammar is soft wrapped', ->
       waitsForPromise ->
         atom.workspace.open('sample.md')
 
       runs ->
-        expect(indicator.wrapLink.classList.contains('lit')).toBeTruthy()
+        expect(indicator.link.classList.contains('lit')).toBeTruthy()
 
     it 'is lit when the soft wrap setting is changed', ->
       editor.toggleSoftWrapped()
 
-      expect(indicator.wrapLink.classList.contains('lit')).toBeTruthy()
+      expect(indicator.link.classList.contains('lit')).toBeTruthy()
 
     it 'is lit when the grammar is changed to a soft wrapped grammar', ->
       grammar = atom.grammars.grammarForScopeName('source.gfm')
       editor.setGrammar(grammar)
 
-      expect(indicator.wrapLink.classList.contains('lit')).toBeTruthy()
+      expect(indicator.link.classList.contains('lit')).toBeTruthy()
 
     describe 'when clicked', ->
       it 'toggles the soft wrap value', ->
