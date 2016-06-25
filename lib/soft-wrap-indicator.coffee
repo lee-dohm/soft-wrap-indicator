@@ -7,30 +7,40 @@ module.exports =
   consumeStatusBar: (statusBar) ->
     @observeEditors()
 
-    SoftWrapIndicatorView = require './soft-wrap-indicator-view'
-    @view = new SoftWrapIndicatorView()
-    @view.initialize()
-    @tile = statusBar.addLeftTile(item: @view, priority: 150)
+    SoftWrapStatusComponent = require './soft-wrap-status-component'
+    @component = new SoftWrapStatusComponent
+    @tile = statusBar.addLeftTile(item: @component.element, priority: 150)
 
   # Public: Deactivates the package.
   deactivate: ->
-    @osberver?.dispose()
-    @observer = null
-    @view?.destroy()
-    @view = null
+    @disposables?.dispose()
+    @disposables = null
+    @component?.destroy()
+    @component = null
     @tile?.destroy()
     @tile = null
 
-  # Private: Sets up observation of text editors.
+  # Private: Sets up observation of the active pane item.
   observeEditors: ->
-    @observer = atom.workspace.observeTextEditors (editor) =>
-      disposables = new CompositeDisposable
+    @disposables = new CompositeDisposable
 
-      disposables.add editor.onDidChangeGrammar =>
-        @view?.update(editor)
+    @disposables.add atom.workspace.observeTextEditors (editor) =>
+      disposable = new CompositeDisposable
 
-      disposables.add editor.onDidChangeSoftWrapped =>
-        @view?.update(editor)
+      disposable.add editor.onDidChangeGrammar =>
+        @updateComponent(editor)
+
+      disposable.add editor.onDidChangeSoftWrapped =>
+        @updateComponent(editor)
 
       editor.onDidDestroy ->
-        disposables.dispose()
+        disposable.dispose()
+
+    @disposables.add atom.workspace.onDidChangeActivePaneItem =>
+      @updateComponent(atom.workspace.getActiveTextEditor())
+
+  updateComponent: (editor) ->
+    if editor
+      @component?.update(visible: true, softWrapped: editor.isSoftWrapped())
+    else
+      @component?.update(visible: false, softWrapped: false)
