@@ -5,7 +5,7 @@ module.exports =
   #
   # * `statusBar` Status bar service.
   consumeStatusBar: (statusBar) ->
-    @observeEditors()
+    @initializeEventHandlers()
 
     SoftWrapStatusComponent = require './soft-wrap-status-component'
     @component = new SoftWrapStatusComponent
@@ -20,8 +20,8 @@ module.exports =
     @tile?.destroy()
     @tile = null
 
-  # Private: Sets up observation of the active pane item.
-  observeEditors: ->
+  # Private: Sets up the appropriate event handlers.
+  initializeEventHandlers: ->
     @disposables = new CompositeDisposable
 
     @disposables.add atom.workspace.observeTextEditors (editor) =>
