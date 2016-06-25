@@ -28,19 +28,13 @@ module.exports =
       disposable = new CompositeDisposable
 
       disposable.add editor.onDidChangeGrammar =>
-        @updateComponent(editor)
+        @component?.update({editor})
 
       disposable.add editor.onDidChangeSoftWrapped =>
-        @updateComponent(editor)
+        @component?.update({editor})
 
       editor.onDidDestroy ->
         disposable.dispose()
 
     @disposables.add atom.workspace.onDidChangeActivePaneItem =>
-      @updateComponent(atom.workspace.getActiveTextEditor())
-
-  updateComponent: (editor) ->
-    if editor
-      @component?.update(visible: true, softWrapped: editor.isSoftWrapped())
-    else
-      @component?.update(visible: false, softWrapped: false)
+      @component?.update({editor: atom.workspace.getActiveTextEditor()})
