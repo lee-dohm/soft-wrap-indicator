@@ -18,11 +18,16 @@
     "etch": "^0.6.0",
     "etch-stateless": "^1.0.0"
   },
+  "devDependencies": {
+    "atom-mocha-test-runner": "github:binarymuse/atom-mocha-test-runner#665caf25972281e5b22921fcaa1af34f3e077752",
+    "chai": "^3.5.0"
+  },
   "consumedServices": {
     "status-bar": {
       "versions": {
         "^1.0.0": "consumeStatusBar"
       }
     }
-  }
+  },
+  "atomTestRunner": "./spec/runner"
 }
