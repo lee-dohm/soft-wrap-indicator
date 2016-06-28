@@ -1,9 +1,9 @@
 'use babel'
 
-SoftWrapIndicator = require('../lib/soft-wrap-indicator')
+const SoftWrapIndicator = require('../lib/soft-wrap-indicator')
 
 describe('SoftWrapIndicatorPackage', function () {
-  let atomEnv, indicator
+  let indicator
 
   beforeEach(async function () {
     await atom.packages.activatePackage('status-bar')
