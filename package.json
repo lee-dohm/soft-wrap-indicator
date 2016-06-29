@@ -1,7 +1,7 @@
 {
   "name": "soft-wrap-indicator",
   "author": "Lee Dohm <lee@lee-dohm.com>",
-  "main": "./lib/soft-wrap-indicator",
+  "main": "./lib/main",
   "version": "0.7.0",
   "description": "Adds an indicator to the status bar that lights up if the active editor has soft wrap enabled",
   "keywords": [
