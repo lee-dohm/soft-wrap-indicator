@@ -1,5 +1,7 @@
 'use babel'
 
+import {CompositeDisposable} from 'atom'
+
 export default class MockEditor {
   constructor (softWrap) {
     this.softWrap = softWrap

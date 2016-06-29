@@ -1,6 +1,5 @@
 'use babel'
 
-import {CompositeDisposable} from 'atom'
 import SoftWrapStatus from '../lib/soft-wrap-status'
 
 import MockEditor from './mock-editor'
