@@ -29,5 +29,5 @@
       }
     }
   },
-  "atomTestRunner": "./test/runner"
+  "atomTestRunner": "./spec/runner"
 }
