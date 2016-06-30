@@ -7,7 +7,7 @@ import SoftWrapStatusComponent from '../lib/soft-wrap-status-component'
 import SynchronousScheduler from './etch-synchronous-scheduler'
 
 describe('SoftWrapStatusComponent', function () {
-  let previousScheduler
+  let previousScheduler, component, model
 
   beforeEach(function () {
     previousScheduler = etch.getScheduler()
@@ -19,8 +19,6 @@ describe('SoftWrapStatusComponent', function () {
   })
 
   describe('when shouldRenderIndicator is false', function () {
-    let component, model
-
     beforeEach(function () {
       model = new MockSoftWrapStatus(false, false)
       component = new SoftWrapStatusComponent(model)
@@ -37,8 +35,6 @@ describe('SoftWrapStatusComponent', function () {
   })
 
   describe('when shouldRenderIndicator is true', function () {
-    let component, model
-
     beforeEach(function () {
       model = new MockSoftWrapStatus(true, false)
       component = new SoftWrapStatusComponent(model)
@@ -50,14 +46,14 @@ describe('SoftWrapStatusComponent', function () {
     })
 
     it('renders the indicator unlit', function () {
-      expect(component.element.querySelector('a.soft-wrap-indicator')).to.be.ok
-      expect(component.element.querySelector('a.lit')).to.be.null
+      indicator = component.element.querySelector('a.soft-wrap-indicator')
+
+      expect(indicator).to.be.ok
+      expect(indicator.classList.contains('lit')).to.be.false
     })
   })
 
   describe('when shouldRenderIndicator and shouldBeLit are both true', function () {
-    let component, model
-
     beforeEach(function () {
       model = new MockSoftWrapStatus(true, true)
       component = new SoftWrapStatusComponent(model)
@@ -69,8 +65,10 @@ describe('SoftWrapStatusComponent', function () {
     })
 
     it('renders the indicator lit', function () {
-      expect(component.element.querySelector('a.soft-wrap-indicator')).to.be.ok
-      expect(component.element.querySelector('a.lit')).to.be.ok
+      indicator = component.element.querySelector('a.soft-wrap-indicator')
+
+      expect(indicator).to.be.ok
+      expect(indicator.classList.contains('lit')).to.be.true
     })
   })
 })
