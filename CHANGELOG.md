@@ -1,11 +1,11 @@
 # CHANGELOG
 
-## **master** &mdash; *Unreleased*
+## **v1.0.0** &mdash; *Released: 1 July 2016*
 
-* Convert package from CoffeeScript to JavaScript
-* Convert from HTML custom elements to using [Etch](https://github.com/nathansobo/etch)
-* Convert tests from original style Atom tests to new custom tests using Mocha
 * Added a simple tooltip to the indicator
+* Convert package from CoffeeScript to JavaScript
+* Convert from HTML custom elements to using [Etch](https://github.com/atom/etch)
+* Convert tests from original style Atom tests to new custom tests using Mocha
 
 ## **v0.7.0** &mdash; *Released: 8 May 2015*
 
