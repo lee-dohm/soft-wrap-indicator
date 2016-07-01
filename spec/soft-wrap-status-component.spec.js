@@ -7,7 +7,7 @@ import SoftWrapStatusComponent from '../lib/soft-wrap-status-component'
 import SynchronousScheduler from './etch-synchronous-scheduler'
 
 describe('SoftWrapStatusComponent', function () {
-  let previousScheduler, component, model
+  let component, model, previousScheduler
 
   beforeEach(function () {
     previousScheduler = etch.getScheduler()
@@ -32,6 +32,12 @@ describe('SoftWrapStatusComponent', function () {
     it('does not render the indicator', function () {
       expect(component.element.querySelector('a.soft-wrap-indicator')).to.be.null
     })
+
+    it('does not toggle the soft wrap when clicked', function () {
+      component.element.click()
+
+      expect(model.toggled).to.be.false
+    })
   })
 
   describe('when shouldRenderIndicator is true', function () {
@@ -45,11 +51,23 @@ describe('SoftWrapStatusComponent', function () {
       expect(component.element.classList.contains('soft-wrap-status-component')).to.be.true
     })
 
-    it('renders the indicator unlit', function () {
-      indicator = component.element.querySelector('a.soft-wrap-indicator')
+    describe('the indicator', function () {
+      let indicator
 
-      expect(indicator).to.be.ok
-      expect(indicator.classList.contains('lit')).to.be.false
+      beforeEach(function () {
+        indicator = component.element.querySelector('a.soft-wrap-indicator')
+      })
+
+      it('is unlit', function () {
+        expect(indicator).to.be.ok
+        expect(indicator.classList.contains('lit')).to.be.false
+      })
+
+      it('toggles the soft wrap when clicked', function () {
+        indicator.click()
+
+        expect(model.toggled).to.be.true
+      })
     })
   })
 
@@ -64,11 +82,21 @@ describe('SoftWrapStatusComponent', function () {
       expect(component.element.classList.contains('soft-wrap-status-component')).to.be.true
     })
 
-    it('renders the indicator lit', function () {
-      indicator = component.element.querySelector('a.soft-wrap-indicator')
+    describe('the indicator', function () {
+      beforeEach(function () {
+        indicator = component.element.querySelector('a.soft-wrap-indicator')
+      })
 
-      expect(indicator).to.be.ok
-      expect(indicator.classList.contains('lit')).to.be.true
+      it('is lit', function () {
+        expect(indicator).to.be.ok
+        expect(indicator.classList.contains('lit')).to.be.true
+      })
+
+      it('toggles the soft wrap when clicked', function () {
+        indicator.click()
+
+        expect(model.toggled).to.be.true
+      })
     })
   })
 })

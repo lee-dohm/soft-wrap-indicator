@@ -4,6 +4,7 @@ export default class MockSoftWrapStatus {
   constructor (shouldRenderIndicator, shouldBeLit) {
     this.render = shouldRenderIndicator
     this.light = shouldBeLit
+    this.toggled = false
   }
 
   shouldBeLit () {
@@ -15,6 +16,6 @@ export default class MockSoftWrapStatus {
   }
 
   toggleSoftWrapped () {
-    return undefined
+    this.toggled = true
   }
 }
