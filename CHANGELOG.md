@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## **v1.0.1** &mdash; *Released: 1 July 2016*
+
+* Typo in compatible Atom versions prevented updating
+
 ## **v1.0.0** &mdash; *Released: 1 July 2016*
 
 * Added a simple tooltip to the indicator

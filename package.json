@@ -12,7 +12,7 @@
   "repository": "https://github.com/lee-dohm/soft-wrap-indicator",
   "license": "MIT",
   "engines": {
-    "atom": ">= 1.9.0 < 2.0.0"
+    "atom": ">= 1.8.0 < 2.0.0"
   },
   "dependencies": {
     "etch": "^0.6.0",
