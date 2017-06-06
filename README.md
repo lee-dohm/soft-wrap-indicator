@@ -28,6 +28,6 @@ It uses the following values from `ui-variables` as defaults in order to blend i
 
 By default it also includes a blurred text shadow to give it a kind of glow when lit.
 
-## Copyright
+## License
 
-Copyright &copy; 2014-2016 [Lee Dohm](http://www.lee-dohm.com). See [LICENSE](https://github.com/lee-dohm/soft-wrap-indicator/blob/master/LICENSE.md) for details.
+[MIT](https://github.com/lee-dohm/soft-wrap-indicator/blob/master/LICENSE.md)
