@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## **v1.1.0** &mdash; *Released: 2017-06-06*
+
+* Update to new `atom.workspace.observeActiveTextEditor` event
+
 ## **v1.0.1** &mdash; *Released: 1 July 2016*
 
 * Typo in compatible Atom versions prevented updating
